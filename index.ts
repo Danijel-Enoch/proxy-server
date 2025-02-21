@@ -8,7 +8,7 @@ type Proxy = {
 	port: number;
 };
 
-class ProxySelector {
+export class ProxySelector {
 	proxies: Proxy[];
 
 	constructor() {
@@ -43,5 +43,5 @@ class ProxySelector {
 }
 
 // Example usage
-const proxySelector = new ProxySelector();
-proxySelector.makeRequestWithProxy("https://example.com");
+export const proxySelector = new ProxySelector();
+// proxySelector.makeRequestWithProxy("https://example.com");

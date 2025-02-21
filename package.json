@@ -1,16 +1,22 @@
 {
-  "name": "proxy-server",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "axios": "^1.7.9",
-    "https-proxy-agent": "^7.0.6",
-    "node-fetch": "^3.3.2"
-  }
+	"name": "proxy-server",
+	"version": "0.0.1",
+	"private": true,
+	"module": "index.ts",
+	"main": "lib/index.js",
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"scripts": {
+		"build": "bun build ./index.ts --outdir ./lib --target node"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"axios": "^1.7.9",
+		"https-proxy-agent": "^7.0.6",
+		"node-fetch": "^3.3.2"
+	}
 }
