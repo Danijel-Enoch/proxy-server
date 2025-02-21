@@ -10,13 +10,13 @@ async function testProxy(proxy: Proxy): Promise<boolean> {
 	const proxyUrl = `http://${proxy.ip}:${proxy.port}`;
 
 	try {
-		const response = await axios.get("http://www.google.com", {
+		const response = await axios.head("http://www.google.com", {
 			proxy: {
 				host: proxy.ip,
 				port: proxy.port,
 				protocol: "http"
 			},
-			timeout: 5000 // 5 second timeout
+			timeout: 3000 // Reduced timeout to 3 seconds
 		});
 
 		return response.status === 200;
@@ -27,33 +27,41 @@ async function testProxy(proxy: Proxy): Promise<boolean> {
 
 async function checkProxies() {
 	// Read proxies from file
-	const proxiesRaw = fs.readFileSync("proxies.json", "utf8");
+	const proxiesRaw = fs.readFileSync("proxies2.json", "utf8");
 	const proxies: Proxy[] = JSON.parse(proxiesRaw);
-
-	const workingProxies: Proxy[] = [];
 
 	console.log(`Testing ${proxies.length} proxies...`);
 
-	// Test each proxy
-	for (let i = 0; i < proxies.length; i++) {
-		const proxy = proxies[i];
-		console.log(
-			`Testing proxy ${i + 1}/${proxies.length}: ${proxy.ip}:${
-				proxy.port
-			}`
+	// Test proxies concurrently in batches
+	const batchSize = 50;
+	const workingProxies: Proxy[] = [];
+
+	for (let i = 0; i < proxies.length; i += batchSize) {
+		const batch = proxies.slice(i, i + batchSize);
+		const results = await Promise.all(
+			batch.map(async (proxy, index) => {
+				console.log(
+					`Testing proxy ${i + index + 1}/${proxies.length}: ${
+						proxy.ip
+					}:${proxy.port}`
+				);
+				const works = await testProxy(proxy);
+				if (works) {
+					console.log(`✅ Proxy works: ${proxy.ip}:${proxy.port}`);
+					return proxy;
+				}
+				return null;
+			})
 		);
 
-		const works = await testProxy(proxy);
-
-		if (works) {
-			console.log(`✅ Proxy works: ${proxy.ip}:${proxy.port}`);
-			workingProxies.push(proxy);
-		}
+		workingProxies.push(
+			...results.filter((proxy): proxy is Proxy => proxy !== null)
+		);
 	}
 
 	// Save working proxies to file
 	fs.writeFileSync(
-		"working-proxies.json",
+		"working-proxies2.json",
 		JSON.stringify(workingProxies, null, 2)
 	);
 

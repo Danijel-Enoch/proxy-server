@@ -36,4 +36,4 @@ function convertProxiesToJson(inputFile: string, outputFile: string) {
 }
 
 // Usage
-convertProxiesToJson("proxies.txt", "proxies.json");
+convertProxiesToJson("proxies2.txt", "proxies2.json");
