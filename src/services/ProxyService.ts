@@ -10,7 +10,7 @@ import { shuffle, logger } from '../utils';
 export class ProxyService {
     // Initialize with empty arrays and default values
     private proxies: Proxy[] = [];
-    private testedProxies: string[] = TESTED_PROXIES;
+    private testedProxies: string[] = [...TESTED_PROXIES]; // Create a mutable copy
     private currentIndex: number = 0;
     private currentTestedIndex: number = 0;
 
@@ -33,7 +33,7 @@ export class ProxyService {
     public getNextProxy(): Proxy {
         if (this.currentIndex >= this.proxies.length) {
             this.currentIndex = 0;
-            this.proxies = shuffle(this.proxies);
+            this.proxies = shuffle([...this.proxies]); // Create a new array when shuffling
         }
         return this.proxies[this.currentIndex++];
     }
@@ -41,7 +41,7 @@ export class ProxyService {
     public getNextTestedProxy(): string {
         if (this.currentTestedIndex >= this.testedProxies.length) {
             this.currentTestedIndex = 0;
-            this.testedProxies = shuffle([...this.testedProxies]);
+            this.testedProxies = shuffle([...this.testedProxies]); // Create a new array when shuffling
         }
         return this.testedProxies[this.currentTestedIndex++];
     }

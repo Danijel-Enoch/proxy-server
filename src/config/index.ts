@@ -13,6 +13,7 @@ export const CONFIG = {
     }
 } as const;
 
+// Export as regular array instead of readonly tuple
 export const TESTED_PROXIES = [
     "http://23.247.136.248:80",
     "http://8.219.97.248:80",
@@ -42,4 +43,4 @@ export const TESTED_PROXIES = [
     "http://51.254.78.223:80",
     "http://103.152.112.120:80",
     "http://198.49.68.80:80"
-] as const;
+];
