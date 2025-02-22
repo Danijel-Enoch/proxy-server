@@ -1,4 +1,5 @@
 import { ProxyService } from './services/ProxyService';
+import type { ProxyRequestResult } from './types';
 import { logger } from './utils';
 
 async function main() {
@@ -25,10 +26,10 @@ async function main() {
 
     try {
         const results = await Promise.all(requests);
-        const successCount = results.filter(r => r.success).length;
+        const successCount = results.filter((r: ProxyRequestResult) => r.success).length;
         logger('info', `Completed ${successCount} successful requests out of ${requests.length}`);
     } catch (error) {
-        logger('error', 'Error processing requests', error);
+        logger('error', 'Application error', error);
     }
 }
 

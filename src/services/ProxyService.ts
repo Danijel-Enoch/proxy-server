@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 import { CONFIG, TESTED_PROXIES } from '../config';
-import { Proxy, RequestOptions, ProxyRequestResult } from '../types';
+import type { Proxy, RequestOptions, ProxyRequestResult } from '../types';
 import { shuffle, logger } from '../utils';
 
 export class ProxyService {
