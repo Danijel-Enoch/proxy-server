@@ -147,24 +147,20 @@ export class ProxySelector {
 }
 
 // Example usage
-export const proxySelector = new ProxySelector();
+//export const proxySelector = new ProxySelector();
 
 // const main = async () => {
 // 	console.log("number of tested Proxies ", myTestedProxy.length);
-// 	const x = [1, 2, 3, 4, 5].map(async (item, id) => {
-// 		console.log("id", id);
-// 		const res = await proxySelector.makeRequestWithTestedProxy(
-// 			"https://mainnet.block-engine.jito.wtf/api/v1/bundles",
-// 			"POST",
-// 			{ "Content-Type": "application/json" },
-// 			JSON.stringify({
-// 				jsonrpc: "2.0",
-// 				id: id,
-// 				method: "getTipAccounts",
-// 				params: []
-// 			})
-// 		);
-// 		console.log({ res, id });
-// 	});
+// 	const x = [1, 2, 3, 4, 5, 1, 2, 3, 4, 3, 4, 3, 4, 3, 4, 3].map(
+// 		async (item, id) => {
+// 			console.log("id", id);
+// 			const res = await proxySelector.makeRequestWithTestedProxy(
+// 				"https://api.dexscreener.com/latest/dex/tokens/0xcC816952A230B6DB721b3c471937bDf8273B13b6",
+// 				"GET",
+// 				{ "Content-Type": "application/json" }
+// 			);
+// 			console.log({ res, id });
+// 		}
+// 	);
 // };
 // main();
