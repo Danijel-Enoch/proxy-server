@@ -1,0 +1,18 @@
+{
+  "all": true,
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.d.ts",
+    "src/__tests__/**",
+    "coverage/**"
+  ],
+  "reporter": [
+    "text",
+    "lcov"
+  ],
+  "extension": [
+    ".ts"
+  ]
+}

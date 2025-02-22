@@ -3,8 +3,13 @@ import sinon from 'sinon';
 import nock from 'nock';
 import fs from 'fs';
 import path from 'path';
-import { ProxyService } from '../services/ProxyService';
-import type { Proxy } from '../types';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { ProxyService } from '../services/ProxyService.js';
+import type { Proxy } from '../types/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 describe('ProxyService', () => {
     let proxyService: ProxyService;

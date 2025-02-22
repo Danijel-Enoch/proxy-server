@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shuffle, logger } from '../utils';
+import { shuffle, logger } from '../utils/index.js';
 
 describe('Utilities', () => {
     let sandbox: sinon.SinonSandbox;
