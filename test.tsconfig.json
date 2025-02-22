@@ -1,14 +1,17 @@
 {
-    "compilerOptions": {
-        "types": ["mocha", "chai", "node"],
-        "target": "ES2021",
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "types": ["node", "mocha", "chai", "@types/sinon"],
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["./node_modules/@types", "./src/__tests__/types.ts"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import sinon, { SinonSandbox, SinonStub } from 'sinon';
+import sinon from 'sinon';
+import type { SinonSandbox, SinonStub } from '@types/sinon';
 import { shuffle, logger } from '../utils/index.js';
 
 describe('Utilities', () => {

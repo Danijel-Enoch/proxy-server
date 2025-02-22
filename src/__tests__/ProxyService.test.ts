@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import sinon, { SinonSandbox } from 'sinon';
+import sinon from 'sinon';
+import type { SinonSandbox } from '@types/sinon';
 import nock from 'nock';
 import fs from 'fs';
 import path from 'path';

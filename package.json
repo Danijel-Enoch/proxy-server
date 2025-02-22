@@ -11,23 +11,22 @@
         "check-types": "tsc --noEmit",
         "convert": "bun run src/utils/convert.ts",
         "test-proxies": "bun run src/utils/ping.ts",
-        "test": "node --import tsx --test src/__tests__/**/*.test.ts",
-        "test:watch": "node --import tsx --test --watch src/__tests__/**/*.test.ts",
-        "test:coverage": "c8 node --import tsx --test src/__tests__/**/*.test.ts"
+        "test": "vitest run",
+        "test:watch": "vitest watch",
+        "test:coverage": "vitest run --coverage"
     },
     "devDependencies": {
         "@types/bun": "latest",
         "@types/chai": "^5.0.1",
-        "@types/mocha": "^10.0.10",
         "@types/nock": "^11.1.0",
         "@types/node": "^20.0.0",
         "@types/sinon": "^17.0.4",
-        "c8": "^8.0.1",
+        "@vitest/coverage-v8": "^3.0.6",
         "chai": "^5.2.0",
         "nock": "^14.0.1",
         "sinon": "^19.0.2",
-        "tsx": "^4.19.3",
-        "typescript": "^5.0.0"
+        "typescript": "^5.0.0",
+        "vitest": "^3.0.6"
     },
     "dependencies": {
         "axios": "^1.7.9",
