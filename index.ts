@@ -147,20 +147,20 @@ export class ProxySelector {
 }
 
 // Example usage
-//export const proxySelector = new ProxySelector();
+const proxySelector = new ProxySelector();
 
-// const main = async () => {
-// 	console.log("number of tested Proxies ", myTestedProxy.length);
-// 	const x = [1, 2, 3, 4, 5, 1, 2, 3, 4, 3, 4, 3, 4, 3, 4, 3].map(
-// 		async (item, id) => {
-// 			console.log("id", id);
-// 			const res = await proxySelector.makeRequestWithTestedProxy(
-// 				"https://api.dexscreener.com/latest/dex/tokens/0xcC816952A230B6DB721b3c471937bDf8273B13b6",
-// 				"GET",
-// 				{ "Content-Type": "application/json" }
-// 			);
-// 			console.log({ res, id });
-// 		}
-// 	);
-// };
-// main();
+const main = async () => {
+	console.log("number of tested Proxies ", myTestedProxy.length);
+	const x = [1, 2, 3, 4, 5, 1, 2, 3, 4, 3, 4, 3, 4, 3, 4, 3].map(
+		async (item, id) => {
+			console.log("id", id);
+			const res = await proxySelector.makeRequestWithTestedProxy(
+				"https://api.geckoterminal.com/api/v2/networks/eth/pools/0x60594a405d53811d3bc4766596efd80fd545a270",
+				"GET",
+				{ "Content-Type": "application/json" }
+			);
+			console.log({ res, id });
+		}
+	);
+};
+main();
