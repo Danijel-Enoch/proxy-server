@@ -8,16 +8,14 @@ import type { Proxy, RequestOptions, ProxyRequestResult } from '../types';
 import { shuffle, logger } from '../utils';
 
 export class ProxyService {
-    private proxies: Proxy[];
-    private testedProxies: string[];
-    private currentIndex: number;
-    private currentTestedIndex: number;
+    // Initialize with empty arrays and default values
+    private proxies: Proxy[] = [];
+    private testedProxies: string[] = TESTED_PROXIES;
+    private currentIndex: number = 0;
+    private currentTestedIndex: number = 0;
 
     constructor() {
         this.loadProxies();
-        this.testedProxies = TESTED_PROXIES;
-        this.currentIndex = 0;
-        this.currentTestedIndex = 0;
     }
 
     private loadProxies(): void {
@@ -25,8 +23,9 @@ export class ProxyService {
             const filePath = path.join(process.cwd(), CONFIG.PROXY_FILES.WORKING_PROXIES);
             const data = fs.readFileSync(filePath, 'utf-8');
             this.proxies = shuffle(JSON.parse(data));
+            logger('info', `Loaded ${this.proxies.length} proxies from file`);
         } catch (error) {
-            logger('error', 'Failed to load proxies', error);
+            logger('error', 'Failed to load proxies, using empty array', error);
             this.proxies = [];
         }
     }
