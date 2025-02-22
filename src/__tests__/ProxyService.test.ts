@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
+import sinon, { SinonSandbox } from 'sinon';
 import nock from 'nock';
 import fs from 'fs';
 import path from 'path';
@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 
 describe('ProxyService', () => {
     let proxyService: ProxyService;
-    let sandbox: sinon.SinonSandbox;
+    let sandbox: SinonSandbox;
 
     const mockProxies: Proxy[] = [
         { ip: '192.168.1.1', port: 8080 },
@@ -21,7 +21,7 @@ describe('ProxyService', () => {
         { ip: '192.168.1.3', port: 8082 }
     ];
 
-    beforeEach(() => {
+    beforeEach((): void => {
         sandbox = sinon.createSandbox();
         
         // Mock fs.readFileSync
@@ -31,16 +31,16 @@ describe('ProxyService', () => {
         proxyService = new ProxyService();
     });
 
-    afterEach(() => {
+    afterEach((): void => {
         sandbox.restore();
         nock.cleanAll();
     });
 
     describe('getNextProxy', () => {
         it('should return proxies in sequence', () => {
-            const proxy1 = proxyService.getNextProxy();
-            const proxy2 = proxyService.getNextProxy();
-            const proxy3 = proxyService.getNextProxy();
+            const proxy1: Proxy = proxyService.getNextProxy();
+            const proxy2: Proxy = proxyService.getNextProxy();
+            const proxy3: Proxy = proxyService.getNextProxy();
 
             expect(mockProxies).to.include(proxy1);
             expect(mockProxies).to.include(proxy2);
@@ -52,7 +52,7 @@ describe('ProxyService', () => {
             mockProxies.forEach(() => proxyService.getNextProxy());
             
             // Get one more - should start from beginning
-            const nextProxy = proxyService.getNextProxy();
+            const nextProxy: Proxy = proxyService.getNextProxy();
             expect(mockProxies).to.include(nextProxy);
         });
     });

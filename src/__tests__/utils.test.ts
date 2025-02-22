@@ -1,39 +1,39 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
+import sinon, { SinonSandbox, SinonStub } from 'sinon';
 import { shuffle, logger } from '../utils/index.js';
 
 describe('Utilities', () => {
-    let sandbox: sinon.SinonSandbox;
-    let consoleLogStub: sinon.SinonStub;
-    let consoleErrorStub: sinon.SinonStub;
+    let sandbox: SinonSandbox;
+    let consoleLogStub: SinonStub;
+    let consoleErrorStub: SinonStub;
 
-    beforeEach(() => {
+    beforeEach((): void => {
         sandbox = sinon.createSandbox();
         consoleLogStub = sandbox.stub(console, 'log');
         consoleErrorStub = sandbox.stub(console, 'error');
     });
 
-    afterEach(() => {
+    afterEach((): void => {
         sandbox.restore();
     });
 
     describe('shuffle', () => {
         it('should return an array of the same length', () => {
-            const original = [1, 2, 3, 4, 5];
+            const original: number[] = [1, 2, 3, 4, 5];
             const shuffled = shuffle(original);
             expect(shuffled).to.have.lengthOf(original.length);
         });
 
         it('should contain all original elements', () => {
-            const original = [1, 2, 3, 4, 5];
+            const original: number[] = [1, 2, 3, 4, 5];
             const shuffled = shuffle(original);
-            original.forEach(item => {
+            original.forEach((item: number) => {
                 expect(shuffled).to.include(item);
             });
         });
 
         it('should not modify the original array', () => {
-            const original = [1, 2, 3, 4, 5];
+            const original: number[] = [1, 2, 3, 4, 5];
             const originalCopy = [...original];
             shuffle(original);
             expect(original).to.deep.equal(originalCopy);
