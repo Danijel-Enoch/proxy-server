@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "types": ["mocha", "chai", "node"],
+        "target": "ES2021",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+}
